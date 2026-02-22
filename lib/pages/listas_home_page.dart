@@ -1,0 +1,55 @@
+import 'package:app_lista_de_compras/model/lista_model.dart';
+import 'package:app_lista_de_compras/pages/criar_lista_page.dart';
+import 'package:app_lista_de_compras/widgets/lista_home_widget.dart';
+import 'package:app_lista_de_compras/widgets/lista_vazia_widget.dart';
+import 'package:flutter/material.dart';
+
+class ListasHomepage extends StatefulWidget {
+  const ListasHomepage({super.key});
+
+  @override
+  State<ListasHomepage> createState() => _ListasHomepageState();
+}
+
+class _ListasHomepageState extends State<ListasHomepage> {
+  final List<Lista> listas = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 5,
+        shadowColor: Colors.black54,
+        actionsPadding: .symmetric(horizontal: 10),
+        centerTitle: true,
+        title: Text(
+          key: Key("appBarTitle"),
+          "Minhas listas",
+          style: TextStyle(color: Colors.white, fontWeight: .w500),
+        ),
+        backgroundColor: Colors.green,
+        actions: [Icon(Icons.diamond, color: Colors.amber, size: 30)],
+      ),
+      floatingActionButton: FloatingActionButton(
+        key: Key("addListBtn"),
+        backgroundColor: Colors.blue,
+        onPressed: () async {
+          final novaLista = await Navigator.push<Lista>(
+            context,
+            MaterialPageRoute(builder: (context) => CriarListaPage()),
+          );
+
+          if (novaLista != null) {
+            setState(() {
+              listas.add(novaLista);
+            });
+          }
+        },
+
+        shape: CircleBorder(),
+        child: Icon(Icons.add, color: Colors.white),
+      ),
+      body: listas.isEmpty ? listaVazia() : ListaHomeWidget(lista: listas),
+    );
+  }
+}

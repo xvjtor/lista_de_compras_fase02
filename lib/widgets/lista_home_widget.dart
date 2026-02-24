@@ -34,7 +34,7 @@ class _ListaHomeWidgetState extends State<ListaHomeWidget> {
                     Text(lista.nomeLista),
 
                     Text(
-                      "${lista.totalItens}/${lista.totalMarcados}",
+                      "${lista.totalMarcados}/${lista.totalItens}",
                       style: TextStyle(color: Colors.green),
                     ),
                   ],

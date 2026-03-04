@@ -29,7 +29,12 @@ class _AddItemWidgetState extends State<AddItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+      padding: EdgeInsets.only(
+        left: 20,
+        right: 20,
+        top: 40,
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
       child: Form(
         key: formKey,
         child: Column(

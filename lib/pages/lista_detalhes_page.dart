@@ -19,6 +19,7 @@ class ListaDetalhesPage extends StatefulWidget {
 class _ListaDetalhesState extends State<ListaDetalhesPage> {
   void addItem() async {
     final novoItem = await showModalBottomSheet<Item>(
+      isScrollControlled: true,
       backgroundColor: Colors.white,
       context: context,
       builder: (ctx) {
